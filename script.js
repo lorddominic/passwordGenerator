@@ -3,8 +3,13 @@ var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
+  var length = parseInt(prompt("How long would you like your password to be?"));
+  if(length < 8 || length > 128 || isNaN(length) === true){
+    alert("Your password length must be between 8 and 128");
+    return;
+  }
   var params = {
-    length: prompt("How long would you like your password to be?"),
+    length: length,
     uppercase: confirm("Would you like to use uppercase characters?"),
     lowercase: confirm("Would you like to use lowercase characters?"),
     specialChars: confirm("Would you like to use special characters?"),
@@ -22,9 +27,10 @@ function generatePassword(options) {
   var pw = "";
   var singlePw = "";
   var num = 0;
-  var l = arguments[0].length;
+  var l = options.length;
+  // var l = arguments[0].length access the object,just use param.object
   console.log(l);
-  if (l >= 8 && l <= 128) {
+  
     if (options["uppercase"]) {
       database.push('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z');
     }
@@ -43,10 +49,7 @@ function generatePassword(options) {
       singlePw = database[num];
       pw = pw + singlePw;
     }
-  }
-  else {
-    alert("Out of bounds!");
-  }
+  
   return pw;
 }
 

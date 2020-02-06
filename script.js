@@ -19,7 +19,7 @@ function writePassword() {
 }
 function generatePassword(options) {
   var database = [];
-  var pw = [];
+  var pw = "";
   var singlePw = "";
   var num = 0;
   var l = arguments[0].length;
@@ -32,8 +32,7 @@ function generatePassword(options) {
       database.push('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z');
     }
     if (options["specialChars"]) {
-      database.push("?", "!");
-      // ` `, `!`, `"`, `#`, `$`, `%`, `&`, `'`, `)`, `(`, `*`, `+`, `,`, `-`, `.`, `/`, `:`, `;`, `<`, `=`, `>`, `?`, `@`, `]`, `[`, `\`, ` ^ `, ```, `}`, `|`, `{`, `~`
+      database.push(` `, `!`, `"`, `#`, `$`, `%`, `&`, `'`, `)`, `(`, `*`, `+`, `,`, `-`, `.`, `/`, `:`, `;`, `<`, `=`, `>`, `?`, `@`, `]`, `[`, `\\`, `^`, '`', `}`, `|`, `{`, `~`);
     }
     if (options["numericChars"]) {
       database.push('0', '1', '2', '3', '4', '5', '6', '7', '8', '9');
@@ -42,21 +41,12 @@ function generatePassword(options) {
     for (let i = 0; i < l; i++) {
       num = Math.floor(Math.random() * database.length);
       singlePw = database[num];
-      pw.push(singlePw);
+      pw = pw + singlePw;
     }
   }
   else {
     alert("Out of bounds!");
   }
-
-  // var iterator = pw.values();
-  // for (let j of iterator) {
-  //   console.log(j);
-  // }
-
-
-
-  // right square braket ] and underscore _ cause errors.
   return pw;
 }
 
